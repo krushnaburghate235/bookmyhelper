@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BookMyHelper - Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #0d6efd;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #0d6efd;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #084dc3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BookMyHelper - Booking Form</h1>
+  </header>
+
+  <div class="form-container">
+    <h2>Book a Helper</h2>
+
+    
+    <form id="bookingForm" action="send_email.php" method="POST">
+      <form action="book_form.php" method="POST">
+      <label for="userName">Your Full Name</label>
+      <input type="text" id="userName" name="userName" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="altPhone">Alternate Phone Number</label>
+      <input type="tel" id="altPhone" name="altPhone">
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="flat">Flat / Room No.</label>
+      <input type="text" id="flat" name="flat" required>
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+    </form>
+  </div>
+
+  <script>
+    // ✅ Prevent empty submission and show confirmation alert
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+      const userName = document.getElementById("userName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const altPhone = document.getElementById("altPhone").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const flat = document.getElementById("flat").value.trim();
+
+      if (!userName || !phone || !altPhone || !address || !flat) {
+        event.preventDefault();
+        alert("⚠️ Please fill all required fields before submitting!");
+      } else {
+        alert("✅ Booking confirmed!\nName: " + userName + "\nPhone: " + phone);
+      }
+    });
+  </script>
+
+</body>
+</html>

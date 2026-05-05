@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BookMyHelper - Akola</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .filter-section {
+      text-align: center;
+      margin: 20px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .helper-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .helper-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 250px;
+      margin: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .helper-card:hover {
+      transform: scale(1.05);
+    }
+
+    .helper-card h3 {
+      margin: 10px 0;
+      color: #0d6efd;
+    }
+
+    .helper-card p {
+      margin: 5px 0;
+    }
+
+    .book-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .book-btn:hover {
+      background-color: #084dc3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BookMyHelper - Helpers in Akola</h1>
+  </header>
+
+  <div class="filter-section">
+    <label for="type">Choose Helper Type: </label>
+    <select id="type" onchange="filterHelpers()">
+      <option value="plumber">Plumber</option>
+      <option value="mechanic">Mechanic</option>
+      <option value="electrician">Electrician</option>
+    </select>
+  </div>
+
+  <main>
+    <div id="helper-list" class="helper-container"></div>
+  </main>
+
+  <script>
+    const helpers = {
+      plumber: [
+        { name: "Ramesh Patil", phone: "9876543210", experience: "5 years", rating: "4.5" },
+        { name: "Suresh Kulkarni", phone: "9123456789", experience: "3 years", rating: "4.2" },
+        { name: "Ganesh Thakur", phone: "9765432109", experience: "6 years", rating: "4.7" }
+      ],
+      mechanic: [
+        { name: "Ajay More", phone: "9876541111", experience: "4 years", rating: "4.3" },
+        { name: "Nitin Shinde", phone: "9123452222", experience: "6 years", rating: "4.6" },
+        { name: "Deepak Jadhav", phone: "9765432333", experience: "2 years", rating: "4.1" }
+      ],
+      electrician: [
+        { name: "Rahul Pawar", phone: "9876543333", experience: "5 years", rating: "4.4" },
+        { name: "Vikas Pawar", phone: "9123454444", experience: "3 years", rating: "4.2" },
+        { name: "Shubham Naik", phone: "9765434555", experience: "7 years", rating: "4.8" }
+      ]
+    };
+
+    function filterHelpers() {
+      const type = document.getElementById("type").value;
+      const container = document.getElementById("helper-list");
+      container.innerHTML = "";
+
+      helpers[type].forEach(helper => {
+        const card = document.createElement("div");
+        card.className = "helper-card";
+        card.innerHTML = `
+          <h3>${helper.name}</h3>
+          <p><strong>Phone:</strong> ${helper.phone}</p>
+          <p><strong>Experience:</strong> ${helper.experience}</p>
+          <p><strong>Rating:</strong> ⭐ ${helper.rating}</p>
+          <button class="book-btn" onclick="bookNow('${helper.name}')">Book Now</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function bookNow(name) {
+      window.location.href = `book_form.html?name=${encodeURIComponent(name)}`;
+    }
+
+    window.onload = filterHelpers;
+  </script>
+
+</body>
+</html>
