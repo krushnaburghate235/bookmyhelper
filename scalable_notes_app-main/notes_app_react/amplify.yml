@@ -1,0 +1,16 @@
+version: 1
+frontend:
+  phases:
+    build:
+      commands:
+        - cd notes_app_react
+        - npm install -g pnpm
+        - pnpm install
+        - pnpm build
+  artifacts:
+    baseDirectory: notes_app_react/dist
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - notes_app_react/node_modules/**/* notes_app_react/.pnpm-store/**/*

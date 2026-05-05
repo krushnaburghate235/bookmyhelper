@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+
+@plugin "daisyui";
+
+.font-caveat {
+  font-family: "Caveat", cursive;
+}
+
+.note-card {
+  background-color: #fefabc;
+  border: 1px solid #fefabc;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  transform: rotate(-1deg);
+}
+
+.note-card:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
